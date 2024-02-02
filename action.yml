@@ -1,0 +1,21 @@
+name: "Changelog generator"
+description: "Generates a changelog for issues closed in a project in the last X days"
+inputs:
+  projects:
+    description: "Comma-separated list of project identifiers, e.g. github/7714,github/231, to search for closed issues on."
+    required: true
+  days:
+    description: "Number of days before today to search for closed issue in"
+    required: true
+    default: "14"
+  exclude-labels:
+    description: "Exclude issues with any of these labels (comma-separated)"
+    required: false
+    default: "no changelog,epic"
+outputs:
+  changelog:
+    description: "The generated changelog report in markdown format"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
