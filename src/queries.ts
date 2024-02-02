@@ -45,7 +45,7 @@ export const getClosedIssues = async(
     console.log(`Search query: ${searchQuery}`);
 
     let hasNextPage = false;
-    let cursor: string;
+    let cursor = null;
 
     do {
         const { issuesClosed } = await graphql<any>(query, {
