@@ -1,0 +1,23 @@
+name: Changelog Generator
+
+on:
+  # Run this workflow on a regular schedule automatically:
+  push:
+  # Allows you to run this workflow manually from the Actions tab:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4    
+
+    - name: Generate changelog
+      uses: ./
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        projects: github/7714
+        exclude-labels: no changelog,epic
+        days: 21
