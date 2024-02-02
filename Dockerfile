@@ -2,7 +2,8 @@ FROM node:lts-alpine
 
 COPY package*.json ./
 RUN npm ci
+RUN npm run build
 
 COPY . .
 
-ENTRYPOINT ["npx", "ts-node", "src/index.ts"]
+ENTRYPOINT ["node", "dist/index.js"]
