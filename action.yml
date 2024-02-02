@@ -12,10 +12,13 @@ inputs:
     description: "Exclude issues with any of these labels (comma-separated)"
     required: false
     default: "no changelog,epic"
+  token:
+    description: "Auth token to use when querying the GitHub Search API"
+    required: true
 outputs:
   changelog:
     description: "The generated changelog report in markdown format"
 
 runs:
-  using: "node16"
+  using: "node20"
   main: "dist/index.js"

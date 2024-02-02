@@ -1,8 +1,6 @@
 import { graphql } from "@octokit/graphql";
 import { Issue } from "./types";
 
-const GH_TOKEN = process.env.GH_TOKEN;
-
 const query = `\
 query getIssues($searchQuery:String!, $cursor:String) {
     issuesClosed:search(type: ISSUE, query: $searchQuery, first: 20, after: $cursor) {
@@ -35,6 +33,7 @@ query getIssues($searchQuery:String!, $cursor:String) {
 }`;
 
 export const getClosedIssues = async(
+        authToken: string,
         projectIdentifiers: string[],
         closedAfter: Date,
         excludeLabels: String[] = []): Promise<Issue[]> => {
@@ -52,7 +51,7 @@ export const getClosedIssues = async(
             searchQuery,
             cursor,
             headers: {
-                authorization: `token ${GH_TOKEN}`
+                authorization: `token ${authToken}`
             }
         });
 

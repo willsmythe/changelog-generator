@@ -18,8 +18,12 @@ const changelogTemplate =
 
 {{/each}}`;
 
-async function generate() {
+async function generate() {    
     // Process inputs
+    const authToken = core.getInput("token") || process.env.GH_TOKEN;
+
+    console.log(`Auth token: ${authToken}`);
+
     console.log(`project: ${core.getInput("projects")}`);
     const projectIdentifiers = core.getInput("projects").split(",").filter(p => p.trim());
     if (projectIdentifiers.length === 0) {
@@ -35,7 +39,7 @@ async function generate() {
     const excludeLabels = core.getInput("exclude-labels").split(",").filter(l => l.trim());
 
     // Query for closed issues
-    const issues = await getClosedIssues(projectIdentifiers, closedAfter, excludeLabels);
+    const issues = await getClosedIssues(authToken, projectIdentifiers, closedAfter, excludeLabels);
 
     // Cleanup the issues for presentation (not great, but whatever)
     issues.forEach(issue => {
