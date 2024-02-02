@@ -21,9 +21,11 @@ npm install
 See `action.yml` for all inputs, but as an example:
 
 ```bash
+export INPUT_TOKEN=xxxx
 export INPUT_PROJECTS=github/7714
-export INPUT_EXCLUDE_LABELS=no changelog,epic
 export INPUT_DAYS=21
+export INPUT_EXCLUDE_LABELS=no changelog,epic,Stale
+export INPUT_HIGHLIGHT_LABELS=bug,performance,feature
 ```
 
 ### Build and run

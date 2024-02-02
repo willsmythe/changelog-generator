@@ -19,6 +19,6 @@ jobs:
         token: ${{ secrets.GH_TOKEN }}
         projects: github/7714
         days: 21
-        exclude-labels: no changelog,epic
-        highlight-labels: bug,performance
+        exclude_labels: no changelog,epic,Stale
+        highlight_labels: bug,performance,feature
         

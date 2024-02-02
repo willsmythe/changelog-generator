@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "ncc build src/index.ts --minify",
-    "run": "node dist/index.js"
+    "run": "node dist/index.js",
+    "br": "npm run build && npm run run"
   },
   "author": "willsmythe@github.com",
   "license": "MIT",

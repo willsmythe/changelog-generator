@@ -8,11 +8,11 @@ inputs:
     description: "Number of days before today to search for closed issue in"
     required: true
     default: "14"
-  exclude-labels:
+  exclude_labels:
     description: "Exclude issues with any of these labels (comma-separated)"
     required: false
     default: "no changelog,epic"
-  highlight-labels:
+  highlight_labels:
     description: "Labels to highlight (show) in the changelog next to the issue"
     required: false
     default: "bug,performance"        
