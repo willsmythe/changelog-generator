@@ -15,7 +15,7 @@ inputs:
   highlight_labels:
     description: "Labels to highlight (show) in the changelog next to the issue"
     required: false
-    default: "bug,performance"        
+    default: "bug,performance,user reported"
   token:
     description: "Auth token to use when querying the GitHub Search API"
     required: true
