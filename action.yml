@@ -12,6 +12,10 @@ inputs:
     description: "Exclude issues with any of these labels (comma-separated)"
     required: false
     default: "no changelog,epic"
+  highlight-labels:
+    description: "Labels to highlight (show) in the changelog next to the issue"
+    required: false
+    default: "bug,performance"        
   token:
     description: "Auth token to use when querying the GitHub Search API"
     required: true

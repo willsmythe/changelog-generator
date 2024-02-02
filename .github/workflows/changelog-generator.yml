@@ -16,7 +16,9 @@ jobs:
     - name: Generate changelog
       uses: ./
       with:
-        projects: github/7714
-        exclude-labels: no changelog,epic
-        days: 21
         token: ${{ secrets.GH_TOKEN }}
+        projects: github/7714
+        days: 21
+        exclude-labels: no changelog,epic
+        highlight-labels: bug,performance
+        

@@ -3,8 +3,6 @@ import { getClosedIssues } from './queries';
 import Handlebars from "handlebars";
 import * as core from '@actions/core';
 
-const labelsToShow = [ "bug" ];
-
 const changelogTemplate = 
 `
 <!-- {{earliestClosed}} through {{latestClosed}} -->
@@ -37,6 +35,7 @@ async function generate() {
     console.log(`Closed after: ${closedAfter}`);
         
     const excludeLabels = core.getInput("exclude-labels").split(",").filter(l => l.trim());
+    const highlightLabels = core.getInput("highlight-labels").split(",").filter(l => l.trim());
 
     // Query for closed issues
     const issues = await getClosedIssues(authToken, projectIdentifiers, closedAfter, excludeLabels);
@@ -45,7 +44,7 @@ async function generate() {
     issues.forEach(issue => {
         issue.title = issue.title.replace(/^\[[\w ]+\]/, '').trim();
         issue.milestone.title = issue.milestone.title?.replace(/^PRX M[\d]+: /, '') || "Other";
-        issue.labels = issue.labels.filter(label => labelsToShow.includes(label.name) );
+        issue.labels = issue.labels.filter(label => highlightLabels.includes(label.name) );
     });
 
     // Group issues by Milestone
@@ -71,6 +70,7 @@ async function generate() {
     console.log(output);
 
     core.summary.addRaw(output);
+    core.summary.write();
     
     core.setOutput("changelog", output);
 }
