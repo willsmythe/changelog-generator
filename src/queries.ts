@@ -40,7 +40,7 @@ export const getClosedIssues = async(
    
     const issues = new Array<Issue>();
     
-    const searchQuery = `project:${projectIdentifiers.join()} state:closed is:issue updated:>=${closedAfter.toISOString().substring(0, 10)} sort:updated-desc ${excludeLabels.map(label => `-label:"${label}"`).join(' ')}`;
+    const searchQuery = `project:${projectIdentifiers.join()} reason:completed state:closed is:issue updated:>=${closedAfter.toISOString().substring(0, 10)} sort:updated-desc ${excludeLabels.map(label => `-label:"${label}"`).join(' ')}`;
     console.log(`Search query: ${searchQuery}`);
 
     let hasNextPage = false;
